@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-300: #E6CA78;
+  --color-gold-400: #D4AF37;
+  --color-gold-500: #C5A059;
+  --color-gold-600: #997838;
+  --color-gold-700: #735724;
+  --color-gold-900: #3D2D10;
+
+  --color-marble-50: #FAF9F6;
+  --color-marble-100: #F5F3EF;
+  --color-marble-200: #EAE6DF;
+  --color-marble-300: #DDD8CE;
+
+  --color-obsidian-800: #1F1E1B;
+  --color-obsidian-900: #141312;
+  --color-obsidian-950: #0C0B0A;
+
+  --font-serifHeading: "Cinzel", serif;
+  --font-decorative: "Cinzel Decorative", serif;
+  --font-bodyRoman: "Cormorant Garamond", serif;
+  --font-sansMeta: "Montserrat", sans-serif;
+
+  --shadow-gold-glow: 0 0 35px -5px rgba(212, 175, 55, 0.35);
+  --shadow-gold-inner: inset 0 0 20px rgba(197, 160, 89, 0.25);
+  --shadow-monument: 0 25px 50px -12px rgba(26, 24, 23, 0.18);
+  
+  --animate-spin-slow: spinSlow 40s linear infinite;
+  --animate-spin-reverse: spinReverse 35s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@layer utilities {
+  .bg-marble-texture {
+    background-color: #FAF9F6;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(197, 160, 89, 0.05) 0px, transparent 60%),
+      radial-gradient(at 50% 50%, rgba(250, 249, 246, 0.9) 0px, rgba(234, 230, 223, 0.6) 100%);
+  }
+
+  .greek-border-pattern {
+    background: linear-gradient(90deg, #D4AF37 50%, transparent 50%),
+                linear-gradient(90deg, #D4AF37 50%, transparent 50%),
+                linear-gradient(0deg, #D4AF37 50%, transparent 50%),
+                linear-gradient(0deg, #D4AF37 50%, transparent 50%);
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 14px 2px, 14px 2px, 2px 14px, 2px 14px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+  }
+
+  .gold-foil-text {
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gold-cursor {
+    pointer-events: none;
+    cursor: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  * {
+    cursor: none !important;
+  }
+}

@@ -1,0 +1,652 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AURELIUS VANCE — Master Architect &amp; Digital Sculptor</title>
+<!-- Google Fonts: Cinzel Decorative, Cinzel, Cormorant Garamond, Montserrat -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=Cinzel:wght@400;600;700;800&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#E6CA78',
+              400: '#D4AF37',
+              500: '#C5A059',
+              600: '#997838',
+              700: '#735724',
+              900: '#3D2D10'
+            },
+            marble: {
+              50: '#FAF9F6',
+              100: '#F5F3EF',
+              200: '#EAE6DF',
+              300: '#DDD8CE',
+            },
+            obsidian: {
+              800: '#1F1E1B',
+              900: '#141312',
+              950: '#0C0B0A',
+            }
+          },
+          fontFamily: {
+            serifHeading: ['Cinzel', 'serif'],
+            decorative: ['Cinzel Decorative', 'serif'],
+            bodyRoman: ['Cormorant Garamond', 'serif'],
+            sansMeta: ['Montserrat', 'sans-serif'],
+          },
+          boxShadow: {
+            'gold-glow': '0 0 35px -5px rgba(212, 175, 55, 0.35)',
+            'gold-inner': 'inset 0 0 20px rgba(197, 160, 89, 0.25)',
+            'monument': '0 25px 50px -12px rgba(26, 24, 23, 0.18)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- BEGIN: Custom Neoclassical Styles -->
+<style data-purpose="classical-theme">
+    /* Classical Greek Marble Subtle Texture & Patterns */
+    .bg-marble-texture {
+      background-color: #FAF9F6;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.04) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(197, 160, 89, 0.05) 0px, transparent 60%),
+        radial-gradient(at 50% 50%, rgba(250, 249, 246, 0.9) 0px, rgba(234, 230, 223, 0.6) 100%);
+    }
+
+    /* Classical Greek Key Border simulation */
+    .greek-border-pattern {
+      background: linear-gradient(90deg, #D4AF37 50%, transparent 50%),
+                  linear-gradient(90deg, #D4AF37 50%, transparent 50%),
+                  linear-gradient(0deg, #D4AF37 50%, transparent 50%),
+                  linear-gradient(0deg, #D4AF37 50%, transparent 50%);
+      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+      background-size: 14px 2px, 14px 2px, 2px 14px, 2px 14px;
+      background-position: 0 0, 0 100%, 0 0, 100% 0;
+    }
+
+    /* Gold Foil Shimmer Text Effect */
+    .gold-foil-text {
+      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Golden Halo Rotations */
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .animate-spin-slow {
+      animation: spinSlow 40s linear infinite;
+    }
+    .animate-spin-reverse {
+      animation: spinReverse 35s linear infinite;
+    }
+
+    /* Custom Cursor Follower */
+    .gold-cursor {
+      pointer-events: none;
+      transition: transform 0.15s ease-out, opacity 0.25s ease-in-out;
+    }
+  </style>
+<style data-purpose="entrance-animations">
+    /* Entrance Stagger Keyframes & Utility classes */
+    .stagger-init {
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .from-bottom {
+      transform: translateY(60px);
+    }
+    .from-left {
+      transform: translateX(-70px);
+    }
+    .from-right {
+      transform: translateX(70px);
+    }
+    .scale-up {
+      transform: scale(0.92);
+    }
+
+    /* Active entrance state triggered by JS */
+    .is-revealed {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translate(0, 0) scale(1) !important;
+    }
+  </style>
+<!-- END: Custom Neoclassical Styles -->
+</head>
+<body class="bg-marble-texture text-obsidian-900 font-bodyRoman antialiased selection:bg-gold-500 selection:text-white relative overflow-x-hidden">
+<!-- Interactive Golden Cursor Follower -->
+<div class="gold-cursor fixed w-8 h-8 rounded-full border border-gold-400/80 z-[100] -top-10 -left-10 hidden lg:block backdrop-blur-[1px]" id="goldCursor" style="transform: translate3d(388px, 467px, 0px);"></div>
+<div class="gold-cursor fixed w-1.5 h-1.5 rounded-full bg-gold-400 z-[101] -top-10 -left-10 hidden lg:block" id="goldDot" style="transform: translate3d(401px, 480px, 0px);"></div>
+<!-- BEGIN: Interactive Classical Preloader -->
+<div class="fixed inset-0 z-[999] flex items-center justify-center bg-marble-50 transition-all duration-1000 ease-in-out overflow-hidden" data-purpose="neoclassical-preloader" id="preloaderScreen" style="pointer-events: none; display: none;">
+<!-- Split Curtain Panels for reveal effect -->
+<div class="absolute inset-y-0 left-0 w-1/2 bg-marble-100 border-r border-gold-400/40 transition-transform duration-1000 ease-in-out" id="curtainLeft" style="transform: translateX(-100%);"></div>
+<div class="absolute inset-y-0 right-0 w-1/2 bg-marble-100 border-l border-gold-400/40 transition-transform duration-1000 ease-in-out" id="curtainRight" style="transform: translateX(100%);"></div>
+<!-- Center Emblem and Roman Counter -->
+<div class="relative z-10 flex flex-col items-center text-center px-6 max-w-lg transition-opacity duration-700" id="loaderContent" style="opacity: 0;">
+<!-- Decorative Greek Wreath Medallion -->
+<div class="relative w-32 h-32 mb-6 flex items-center justify-center">
+<svg class="w-full h-full text-gold-500 animate-spin-slow" viewBox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="46" stroke="currentColor" stroke-dasharray="6, 6" stroke-width="1.5"></circle>
+<circle cx="50" cy="50" fill="none" r="40" stroke="#D4AF37" stroke-width="1"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-decorative text-gold-600 text-3xl font-bold tracking-widest">🏛️</span>
+</div>
+</div>
+<!-- Title & Latin Motto -->
+<p class="font-serifHeading text-xs uppercase tracking-[0.4em] text-gold-700 mb-2">Monumentum Digitalis</p>
+<h2 class="font-serifHeading text-xl tracking-widest text-obsidian-950 font-bold mb-4">AURELIUS VANCE</h2>
+<p class="italic text-gold-900/70 text-sm mb-6">"Excellence is not an act, but a habit of divine proportion."</p>
+<!-- Numerical Counter & Roman Numeral Indicator -->
+<div class="flex items-center space-x-3 text-gold-600 font-sansMeta text-xs uppercase tracking-widest">
+<span class="font-serifHeading text-base font-bold text-gold-500 tracking-wider" id="romanNumeral">C</span>
+<span class="text-gold-400">/</span>
+<span class="text-sm font-semibold" id="counterValue">100%</span>
+</div>
+<!-- Golden Progress Line -->
+<div class="w-56 h-[2px] bg-gold-200 mt-4 overflow-hidden relative rounded-full">
+<div class="h-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 w-0 transition-all duration-150" id="progressBar" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<!-- END: Interactive Classical Preloader -->
+<!-- BEGIN: Classical Floating Navigation -->
+<header class="fixed top-0 left-0 right-0 z-50 px-6 py-5 transition-all duration-300" id="mainHeader">
+<nav class="max-w-7xl mx-auto flex items-center justify-between px-8 py-3.5 rounded-full bg-white/70 backdrop-blur-md border border-gold-400/40 shadow-gold-glow">
+<!-- Monogram Emblem -->
+<a class="flex items-center space-x-3 group" href="#">
+<div class="w-10 h-10 rounded-full border border-gold-500 flex items-center justify-center bg-marble-50 shadow-sm group-hover:bg-gold-500 group-hover:text-white transition-colors duration-300">
+<span class="font-serifHeading text-base font-bold text-gold-700 group-hover:text-white transition-colors">𝚲</span>
+</div>
+<div class="flex flex-col">
+<span class="font-serifHeading tracking-[0.25em] text-xs font-bold text-obsidian-950">AURELIUS</span>
+<span class="font-sansMeta tracking-[0.3em] text-[9px] text-gold-600 uppercase">Studio Athenaeum</span>
+</div>
+</a>
+<!-- Desktop Nav Links -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-serifHeading text-xs uppercase tracking-widest text-obsidian-800 hover:text-gold-500 transition-colors" href="#hero">Sanctuary</a>
+<a class="font-serifHeading text-xs uppercase tracking-widest text-obsidian-800 hover:text-gold-500 transition-colors" href="#odyssey">The Odyssey</a>
+<a class="font-serifHeading text-xs uppercase tracking-widest text-obsidian-800 hover:text-gold-500 transition-colors" href="#masterpieces">Masterpieces</a>
+<a class="font-serifHeading text-xs uppercase tracking-widest text-obsidian-800 hover:text-gold-500 transition-colors" href="#pillars">Pillars</a>
+<a class="font-serifHeading text-xs uppercase tracking-widest text-obsidian-800 hover:text-gold-500 transition-colors" href="#contact">Contact</a>
+</div>
+<!-- Action Button -->
+<div class="flex items-center space-x-4">
+<a class="relative group overflow-hidden px-5 py-2 rounded-full border border-gold-500 bg-gold-500 text-white font-serifHeading text-xs uppercase tracking-widest transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/20" href="#contact">
+<span class="relative z-10 font-semibold group-hover:text-gold-900 transition-colors duration-300">Summon</span>
+<div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+</a>
+</div>
+</nav>
+</header>
+<!-- END: Classical Floating Navigation -->
+<!-- BEGIN: Monumental Hero Section -->
+<section class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden" data-purpose="hero-section" id="hero">
+<!-- Greek Key Architectural Background Accents -->
+<div class="absolute inset-0 pointer-events-none opacity-20 flex justify-between px-4 sm:px-12">
+<div class="w-[1px] h-full bg-gradient-to-b from-transparent via-gold-500 to-transparent"></div>
+<div class="w-[1px] h-full bg-gradient-to-b from-transparent via-gold-500 to-transparent hidden md:block"></div>
+<div class="w-[1px] h-full bg-gradient-to-b from-transparent via-gold-500 to-transparent"></div>
+</div>
+<!-- Classical Laurel Branch Accents SVG in corners -->
+<div class="absolute top-24 left-8 text-gold-400/30 w-32 h-32 hidden xl:block pointer-events-none">
+<svg fill="currentColor" viewBox="0 0 100 100">
+<path d="M50 0 C60 20 80 30 100 35 C80 40 60 50 50 70 C40 50 20 40 0 35 C20 30 40 20 50 0 Z"></path>
+</svg>
+</div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+<!-- Left Narrative / Stagger Entrance from Left -->
+<div class="lg:col-span-4 text-center lg:text-left order-2 lg:order-1 stagger-init from-left is-revealed" data-stagger-delay="200">
+<div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-gold-400/40 bg-white/60 mb-6">
+<span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+<span class="font-sansMeta text-[11px] uppercase tracking-widest text-gold-700 font-semibold">Architect of High Digital Order</span>
+</div>
+<h1 class="font-serifHeading text-4xl sm:text-5xl xl:text-6xl text-obsidian-950 font-bold leading-tight tracking-tight uppercase mb-6">&nbsp;Front&nbsp; &nbsp; &nbsp; &nbsp;end. developer<div>react.Ts</div></h1>
+<p class="font-bodyRoman text-xl sm:text-2xl text-obsidian-800/80 leading-relaxed mb-8">
+          Sculpting monumental digital spaces, sovereign brand identities, and high-elegance architectures governed by the golden ratio and Hellenic eternity.
+        </p>
+<!-- CTA Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+<a class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-gold-500 hover:bg-gold-600 text-white font-serifHeading text-xs uppercase tracking-[0.2em] shadow-lg shadow-gold-500/25 transition-all text-center" href="#masterpieces">
+            Explore Monuments
+          </a>
+<a class="w-full sm:w-auto px-8 py-3.5 rounded-full border border-gold-500/60 hover:border-gold-500 bg-white/70 hover:bg-white text-obsidian-950 font-serifHeading text-xs uppercase tracking-[0.2em] transition-all text-center" href="#contact">
+            Initiate Dialogue
+          </a>
+</div>
+</div>
+<!-- Centerpiece Portrait: IMAGE_1 in Gilded Medallion -->
+<div class="lg:col-span-5 flex justify-center order-1 lg:order-2 stagger-init scale-up is-revealed" data-stagger-delay="100">
+<div class="relative w-72 sm:w-88 md:w-96 aspect-[3/4] flex items-center justify-center">
+<!-- Outer Rotating Greek Sun Ring -->
+<div class="absolute -inset-10 border border-gold-400/30 rounded-full animate-spin-slow pointer-events-none"></div>
+<div class="absolute -inset-6 border-2 border-dashed border-gold-500/25 rounded-full animate-spin-reverse pointer-events-none"></div>
+<!-- Gold Medallion Frame Frame Container -->
+<div class="relative w-full h-full rounded-2xl md:rounded-t-full border-4 border-gold-400 p-2 bg-gradient-to-b from-gold-300 via-gold-500 to-gold-700 shadow-monument overflow-hidden">
+<!-- Inner Bezel -->
+<div class="w-full h-full rounded-xl md:rounded-t-full overflow-hidden bg-marble-100 relative group">
+<img alt="Classical Carrara Marble Bust of Aurelius Vance with Gilded Eyewear" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBboVw3clPKjBQTcu06YJlLDsfjZqdCRljH529Y7qDh9z2Ty3YmvlQU1tvCMhSA12IgRCXEM_MorH8wEVF_PV9b7INcp9izdgbGHSof5-SVTiER7r0Y4C1OhtpvIWq0NzCvSaQ4SG5BOPeFg4cu-7Qt17fPjCaXlb1r-x6FIU1PU02mS7bN7hjJpDOaCdxjFxYCgcxt1q3kWTJSbctInq4W3jYSFpbaIQfx8dMX6dTgjefrmewVumiHfrSHd0FqmvYv0Gk">
+<!-- Ambient Subtle Gold Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent opacity-60"></div>
+<!-- Bottom Plaque Inscription -->
+<div class="absolute bottom-4 inset-x-4 py-2 px-3 bg-white/85 backdrop-blur-md rounded-lg border border-gold-400/60 text-center">
+<span class="font-serifHeading text-[10px] tracking-[0.3em] uppercase text-gold-700 font-bold">Aurelius I • Praetor of Design</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Accolades & Metric Cards / Stagger Entrance from Right -->
+<div class="lg:col-span-3 space-y-6 order-3 stagger-init from-right is-revealed" data-stagger-delay="300">
+<!-- Metric Card 1 -->
+<div class="p-6 rounded-2xl bg-white/80 border border-gold-300/60 shadow-sm backdrop-blur-sm relative overflow-hidden group hover:border-gold-500 transition-colors">
+<div class="absolute top-0 right-0 w-16 h-16 bg-gold-400/10 rounded-bl-full pointer-events-none"></div>
+<span class="font-serifHeading text-3xl font-bold gold-foil-text block mb-1">XIV</span>
+<h4 class="font-serifHeading text-xs uppercase tracking-wider text-obsidian-900 font-bold">Years of Supremacy</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/70 mt-1">Conceiving enduring aesthetic systems for global sovereigns.</p>
+</div>
+<!-- Metric Card 2 -->
+<div class="p-6 rounded-2xl bg-white/80 border border-gold-300/60 shadow-sm backdrop-blur-sm relative overflow-hidden group hover:border-gold-500 transition-colors">
+<div class="absolute top-0 right-0 w-16 h-16 bg-gold-400/10 rounded-bl-full pointer-events-none"></div>
+<span class="font-serifHeading text-3xl font-bold gold-foil-text block mb-1">1:1.618</span>
+<h4 class="font-serifHeading text-xs uppercase tracking-wider text-obsidian-900 font-bold">Golden Ratio Precision</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/70 mt-1">Every pixel tuned according to divine Euclidean geometries.</p>
+</div>
+<!-- Metric Card 3 -->
+<div class="p-6 rounded-2xl bg-white/80 border border-gold-300/60 shadow-sm backdrop-blur-sm relative overflow-hidden group hover:border-gold-500 transition-colors">
+<div class="absolute top-0 right-0 w-16 h-16 bg-gold-400/10 rounded-bl-full pointer-events-none"></div>
+<span class="font-serifHeading text-3xl font-bold gold-foil-text block mb-1">XL+</span>
+<h4 class="font-serifHeading text-xs uppercase tracking-wider text-obsidian-900 font-bold">Monuments Unveiled</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/70 mt-1">From private galleries to high-tier financial protocols.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Monumental Hero Section -->
+<!-- BEGIN: Greek Meander Decorative Ribbon Separator -->
+<div class="w-full py-4 border-y border-gold-400/30 bg-marble-100/60 overflow-hidden" data-purpose="decorative-ribbon">
+<div class="max-w-7xl mx-auto px-6 flex items-center justify-between text-gold-600 font-serifHeading text-xs uppercase tracking-[0.35em] whitespace-nowrap overflow-x-auto space-x-8">
+<span class="">• ARETE (ἀρετή) — EXCELLENCE</span>
+<span class="">• HARMONIA (ἁρμονία) — PROPORTION</span>
+<span class="">• KALLOS (κάλλος) — DIVINE BEAUTY</span>
+<span class="">• TECHNE (τέχνη) — MASTERY</span>
+<span class="">• MNEMOSYNE (μνημοσύνη) — MEMORY</span>
+</div>
+</div>
+<!-- END: Greek Meander Decorative Ribbon Separator -->
+<!-- BEGIN: The Odyssey & Philosophy Section (Featuring IMAGE_2) -->
+<section class="py-28 relative" data-purpose="odyssey-section" id="odyssey">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-20 stagger-init from-bottom is-revealed">
+<span class="font-serifHeading text-xs uppercase tracking-[0.4em] text-gold-600 font-semibold block mb-3">Chapter I : The Codex</span>
+<h2 class="font-serifHeading text-3xl sm:text-5xl font-bold text-obsidian-950 uppercase tracking-tight">The Architect's Odyssey</h2>
+<div class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Portrait Feature with Three-Quarter Angle (IMAGE_2) -->
+<div class="lg:col-span-6 stagger-init from-left is-revealed" data-stagger-delay="150">
+<div class="relative mx-auto max-w-md lg:max-w-none">
+<!-- Classical Outer Framing -->
+<div class="p-3 bg-white rounded-3xl border border-gold-300 shadow-xl shadow-gold-600/10 relative">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-marble-200">
+<img alt="Aurelius Vance - Three quarter classical bust view" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNA_3kku7k-c1FAzDGU3n6peeER6OtpGbta9LWKIrohHbpdK7VjirLgCTBoebJllt6mw1j1Ci6wEcxJmKscLVmquM00W5lzomCnGnzBGqwaw4rKsxqKiEUExT3vUJZ-aJqMx2CBoAqU9P1Yw7cO3ynmVGfOuYfoPsGLzHB-r5UafJrrbSwjel5t8cbjpTBHLsXLMkfjR0m-XYtf2wO8M0-OkI5IC0mFwBLTYiQdZenyl_2tACxtigC-A">
+<!-- Editorial Vignette -->
+<div class="absolute inset-0 bg-gradient-to-t from-obsidian-950/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 text-white">
+<span class="font-sansMeta text-[10px] tracking-[0.25em] uppercase text-gold-300 font-semibold">Sculpted In Marble &amp; Logic</span>
+<p class="font-serifHeading text-lg text-white font-medium">"Architecture begins where the temporal ends."</p>
+</div>
+</div>
+</div>
+<!-- Floating Hellenic Seal Accent -->
+<div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-full bg-gold-500 text-white p-3 border-4 border-marble-50 shadow-lg flex flex-col items-center justify-center text-center">
+<span class="font-serifHeading text-xs font-bold tracking-widest uppercase">EST.</span>
+<span class="font-serifHeading text-lg font-bold">MMX</span>
+<span class="font-sansMeta text-[9px] tracking-widest uppercase">Athens</span>
+</div>
+</div>
+</div>
+<!-- Editorial Narrative Column -->
+<div class="lg:col-span-6 space-y-6 stagger-init from-right is-revealed" data-stagger-delay="250">
+<h3 class="font-serifHeading text-2xl sm:text-3xl text-obsidian-950 font-semibold uppercase leading-snug">
+            Transmuting Ancient Athenian Grandeur into Tomorrow's Digital Monuments
+          </h3>
+<p class="font-bodyRoman text-xl text-obsidian-800/80 leading-relaxed">
+            In an era of fleeting ephemera and disposable trends, my studio adheres to the doctrine of the immortal masters: Polykleitos, Ictinus, and Vitruvius. We believe a digital creation should evoke the same reverent silence as standing inside the Parthenon.
+          </p>
+<p class="font-bodyRoman text-xl text-obsidian-800/80 leading-relaxed">
+            Every typography curve, spatial interval, and golden-ratio grid is engineered with deliberate gravitas. We don't construct websites; we erect digital temples that cement authority and elevate institutions into mythology.
+          </p>
+<!-- Core Philosophical Tenets Checklist -->
+<div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex items-start space-x-3 p-3 bg-white/60 rounded-xl border border-gold-200">
+<span class="text-gold-500 font-bold">✦</span>
+<div>
+<strong class="font-serifHeading text-xs uppercase tracking-wider block text-obsidian-950">Pure Symmetria</strong>
+<span class="text-xs font-bodyRoman text-obsidian-800/70">Mathematical balance in layout rhythms.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-3 bg-white/60 rounded-xl border border-gold-200">
+<span class="text-gold-500 font-bold">✦</span>
+<div>
+<strong class="font-serifHeading text-xs uppercase tracking-wider block text-obsidian-950">Gilded Tactility</strong>
+<span class="text-xs font-bodyRoman text-obsidian-800/70">Textures that emulate Carrara marble and bullion gold.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: The Odyssey & Philosophy Section -->
+<!-- BEGIN: Masterpieces & The Vault Section (Featuring IMAGE_3) -->
+<section class="py-28 bg-marble-100/50 border-t border-gold-300/40 relative" data-purpose="portfolio-showcase" id="masterpieces">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Section Title & Narrative -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 stagger-init from-bottom is-revealed">
+<div>
+<span class="font-serifHeading text-xs uppercase tracking-[0.4em] text-gold-600 font-semibold block mb-3">Chapter II : The Vault</span>
+<h2 class="font-serifHeading text-3xl sm:text-5xl font-bold text-obsidian-950 uppercase tracking-tight">Monuments &amp; Masterpieces</h2>
+</div>
+<p class="font-bodyRoman text-lg text-obsidian-800/70 max-w-md mt-4 md:mt-0">
+          A curatorial anthology of bespoke commissions, decentralized protocols, and private vaults.
+        </p>
+</div>
+<!-- Centerpiece Showcase Grid: Left Profile (IMAGE_3) + Projects -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+<!-- Large Centerpiece Feature Card with IMAGE_3 -->
+<div class="lg:col-span-5 rounded-3xl bg-white border border-gold-400/50 p-6 flex flex-col justify-between shadow-monument stagger-init from-left is-revealed" data-stagger-delay="100">
+<div class="relative rounded-2xl overflow-hidden aspect-[4/3] mb-6 border border-gold-300">
+<img alt="Majestic classical Roman temple with Corinthian marble colonnades and gilded architectural accents at golden hour" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA741MmbCEKsiIA-W_Y0ZltyPVG2XcmxBwbyaZvTHxZTQuRI8oJeu_ufWqzcA_Z5hypbronc4oOHMWeB4dC2W9l0fksIS2pObOb_svsWzKxBC_WXHwzXWG0WF2n7uK40Wg0Wim9ab0EcaVPKn9da6APWXx28_THaUmaC1iU9A0G1U7mVasPHW5c6a0zE3xe8lRG7inUl_8OCMYYckVjPJJKwNTQewODERTXXy903cEm8eTGNM7G3Xzzvg">
+<span class="absolute top-4 left-4 bg-obsidian-950/80 backdrop-blur-md text-gold-300 text-[10px] font-sansMeta font-semibold px-3 py-1 rounded-full uppercase tracking-widest border border-gold-500/30">
+              The Genesis Profile
+            </span>
+</div>
+<div>
+<div class="flex items-center space-x-2 mb-2 text-gold-600 text-xs font-serifHeading tracking-widest uppercase">
+<span class="">Collection • MMXXIV</span>
+<span class="">—</span>
+<span class="">Imperial Archive</span>
+</div>
+<h3 class="font-serifHeading text-2xl font-bold text-obsidian-950 mb-3">Project Parthenon : Sovereign Web Engine</h3>
+<p class="font-bodyRoman text-base text-obsidian-800/80 leading-relaxed mb-6">
+              A bespoke high-velocity architecture created for Swiss bullion custodians, implementing cryptographic proof of reserve wrapped in an unyielding classical Grecian UI.
+            </p>
+</div>
+<div class="pt-4 border-t border-gold-200 flex items-center justify-between">
+<span class="font-sansMeta text-xs font-medium text-obsidian-800 uppercase tracking-widest">Full Case Study</span>
+<a class="w-10 h-10 rounded-full border border-gold-400 flex items-center justify-center text-gold-600 hover:bg-gold-500 hover:text-white transition-colors" href="#contact">
+              →
+            </a>
+</div>
+</div>
+<!-- Right Side Staggered Interactive Masterpiece Cards -->
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Masterpiece 1 -->
+<div class="rounded-3xl bg-white border border-gold-300/70 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-gold-500 transition-all group stagger-init from-bottom is-revealed" data-stagger-delay="150">
+<div>
+<div class="h-36 rounded-xl bg-gradient-to-br from-gold-100 to-marble-200 border border-gold-200 flex items-center justify-center mb-6 overflow-hidden relative">
+<span class="font-decorative text-4xl text-gold-600/40 group-hover:scale-125 transition-transform duration-500">🏛️</span>
+<div class="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<span class="font-serifHeading text-[10px] tracking-[0.2em] text-gold-600 font-bold uppercase block mb-1">Fintech Sanctuary</span>
+<h4 class="font-serifHeading text-lg font-bold text-obsidian-950 mb-2">The Olympus Protocol</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/75 leading-normal">
+                Decentralized vault with real-time liquidity visualization shaped like the Acropolis colonnade.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-marble-200 flex justify-between items-center text-xs font-serifHeading text-gold-600">
+<span class="tracking-widest uppercase">View Artifact</span>
+<span class="">↗</span>
+</div>
+</div>
+<!-- Masterpiece 2 -->
+<div class="rounded-3xl bg-white border border-gold-300/70 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-gold-500 transition-all group stagger-init from-bottom is-revealed" data-stagger-delay="200">
+<div>
+<div class="h-36 rounded-xl bg-gradient-to-br from-gold-100 to-marble-200 border border-gold-200 flex items-center justify-center mb-6 overflow-hidden relative">
+<span class="font-decorative text-4xl text-gold-600/40 group-hover:scale-125 transition-transform duration-500">🏺</span>
+<div class="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<span class="font-serifHeading text-[10px] tracking-[0.2em] text-gold-600 font-bold uppercase block mb-1">High Luxury Real Estate</span>
+<h4 class="font-serifHeading text-lg font-bold text-obsidian-950 mb-2">Elysium Living Portals</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/75 leading-normal">
+                Mediterranean private villas catalog presented through interactive 3D marble pavilions.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-marble-200 flex justify-between items-center text-xs font-serifHeading text-gold-600">
+<span class="tracking-widest uppercase">View Artifact</span>
+<span class="">↗</span>
+</div>
+</div>
+<!-- Masterpiece 3 -->
+<div class="rounded-3xl bg-white border border-gold-300/70 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-gold-500 transition-all group stagger-init from-bottom is-revealed" data-stagger-delay="250">
+<div>
+<div class="h-36 rounded-xl bg-gradient-to-br from-gold-100 to-marble-200 border border-gold-200 flex items-center justify-center mb-6 overflow-hidden relative">
+<span class="font-decorative text-4xl text-gold-600/40 group-hover:scale-125 transition-transform duration-500">📜</span>
+<div class="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<span class="font-serifHeading text-[10px] tracking-[0.2em] text-gold-600 font-bold uppercase block mb-1">Haute Horlogerie</span>
+<h4 class="font-serifHeading text-lg font-bold text-obsidian-950 mb-2">Chronos Athenian Chronograph</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/75 leading-normal">
+                Interactive perpetual calendar UI celebrating 2,500 years of Grecian astronomy.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-marble-200 flex justify-between items-center text-xs font-serifHeading text-gold-600">
+<span class="tracking-widest uppercase">View Artifact</span>
+<span class="">↗</span>
+</div>
+</div>
+<!-- Masterpiece 4 -->
+<div class="rounded-3xl bg-white border border-gold-300/70 p-6 flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-gold-500 transition-all group stagger-init from-bottom is-revealed" data-stagger-delay="300">
+<div>
+<div class="h-36 rounded-xl bg-gradient-to-br from-gold-100 to-marble-200 border border-gold-200 flex items-center justify-center mb-6 overflow-hidden relative">
+<span class="font-decorative text-4xl text-gold-600/40 group-hover:scale-125 transition-transform duration-500">⚜️</span>
+<div class="absolute inset-0 bg-gold-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<span class="font-serifHeading text-[10px] tracking-[0.2em] text-gold-600 font-bold uppercase block mb-1">Private Heritage</span>
+<h4 class="font-serifHeading text-lg font-bold text-obsidian-950 mb-2">The Delphic Oracle DAO</h4>
+<p class="font-bodyRoman text-sm text-obsidian-800/75 leading-normal">
+                Governance dashboard engineered with parchment contrast and gilded votive mechanisms.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-marble-200 flex justify-between items-center text-xs font-serifHeading text-gold-600">
+<span class="tracking-widest uppercase">View Artifact</span>
+<span class="">↗</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Masterpieces & The Vault Section -->
+<!-- BEGIN: The Three Pillars of Mastery -->
+<section class="py-28 relative" data-purpose="pillars-section" id="pillars">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-2xl mx-auto mb-20 stagger-init from-bottom is-revealed">
+<span class="font-serifHeading text-xs uppercase tracking-[0.4em] text-gold-600 font-semibold block mb-3">Chapter III : Doctrines</span>
+<h2 class="font-serifHeading text-3xl sm:text-5xl font-bold text-obsidian-950 uppercase tracking-tight">The Three Hellenic Pillars</h2>
+<div class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar I: Doric -->
+<div class="p-8 rounded-3xl bg-white/80 border border-gold-300 shadow-sm relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 stagger-init from-bottom is-revealed" data-stagger-delay="100">
+<div class="w-12 h-12 rounded-full border border-gold-400 flex items-center justify-center font-serifHeading text-gold-600 font-bold mb-6">
+            I
+          </div>
+<h3 class="font-serifHeading text-xl font-bold text-obsidian-950 mb-3 uppercase tracking-wide">Doric Strength</h3>
+<h4 class="font-sansMeta text-[11px] uppercase tracking-widest text-gold-600 mb-4">Structural Integrity</h4>
+<p class="font-bodyRoman text-base text-obsidian-800/75 leading-relaxed">
+            Unshakeable technical infrastructure, lightning execution speed, and rigorous adherence to semantic architecture that withstands the erosions of time.
+          </p>
+</div>
+<!-- Pillar II: Ionic -->
+<div class="p-8 rounded-3xl bg-white border-2 border-gold-500 shadow-xl shadow-gold-500/10 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 stagger-init from-bottom is-revealed" data-stagger-delay="200">
+<div class="absolute top-0 right-0 bg-gold-500 text-white font-serifHeading text-[9px] font-bold uppercase tracking-widest px-4 py-1 rounded-bl-xl">
+            Sovereign Standard
+          </div>
+<div class="w-12 h-12 rounded-full bg-gold-500 text-white flex items-center justify-center font-serifHeading font-bold mb-6 shadow-md">
+            II
+          </div>
+<h3 class="font-serifHeading text-xl font-bold text-obsidian-950 mb-3 uppercase tracking-wide">Ionic Grace</h3>
+<h4 class="font-sansMeta text-[11px] uppercase tracking-widest text-gold-600 mb-4">Divine Proportion</h4>
+<p class="font-bodyRoman text-base text-obsidian-800/75 leading-relaxed">
+            Harmonious compositional flow, balanced negative space, and typographic cadence that soothes the senses while commanding instinctive veneration.
+          </p>
+</div>
+<!-- Pillar III: Corinthian -->
+<div class="p-8 rounded-3xl bg-white/80 border border-gold-300 shadow-sm relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 stagger-init from-bottom is-revealed" data-stagger-delay="300">
+<div class="w-12 h-12 rounded-full border border-gold-400 flex items-center justify-center font-serifHeading text-gold-600 font-bold mb-6">
+            III
+          </div>
+<h3 class="font-serifHeading text-xl font-bold text-obsidian-950 mb-3 uppercase tracking-wide">Corinthian Ornament</h3>
+<h4 class="font-sansMeta text-[11px] uppercase tracking-widest text-gold-600 mb-4">Gilded Detail</h4>
+<p class="font-bodyRoman text-base text-obsidian-800/75 leading-relaxed">
+            Meticulously crafted micro-interactions, subtle light reflections, and tactile digital luxury that convert casual observers into devoted patrons.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: The Three Pillars of Mastery -->
+<!-- BEGIN: Classical Contact Sanctuary & Footer -->
+<footer class="pt-24 pb-12 bg-obsidian-950 text-white relative overflow-hidden border-t-2 border-gold-500" data-purpose="contact-and-footer" id="contact">
+<!-- Background Gilded Glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-64 bg-gold-500/10 blur-[120px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- Inquiry Sanctuary Form -->
+
+<!-- Footer Bottom Meta -->
+<div class="border-t border-gold-500/20 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-marble-300/60 font-sansMeta space-y-4 md:space-y-0">
+<div class="flex items-center space-x-3">
+<span class="font-serifHeading text-gold-500 font-bold text-sm">𝚲</span>
+<span class="tracking-widest uppercase">© MMXXV Aurelius Vance. All Imperial Rights Reserved.</span>
+</div>
+<div class="flex space-x-6 font-serifHeading text-[10px] tracking-widest uppercase text-gold-400">
+<a class="hover:text-white transition-colors" href="#">Delphi</a>
+<a class="hover:text-white transition-colors" href="#">Athens</a>
+<a class="hover:text-white transition-colors" href="#">Alexandria</a>
+<a class="hover:text-white transition-colors" href="#">Rome</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Classical Contact Sanctuary & Footer -->
+<!-- BEGIN: Interactive Preloader & Entrance Animation Scripts -->
+<script data-purpose="preloader-logic">
+    document.addEventListener("DOMContentLoaded", () => {
+      const counterElement = document.getElementById("counterValue");
+      const romanElement = document.getElementById("romanNumeral");
+      const progressBar = document.getElementById("progressBar");
+      const preloaderScreen = document.getElementById("preloaderScreen");
+      const curtainLeft = document.getElementById("curtainLeft");
+      const curtainRight = document.getElementById("curtainRight");
+      const loaderContent = document.getElementById("loaderContent");
+
+      const romanNumerals = [
+        { limit: 10, symbol: "I" },
+        { limit: 25, symbol: "XXV" },
+        { limit: 50, symbol: "L" },
+        { limit: 75, symbol: "LXXV" },
+        { limit: 90, symbol: "XC" },
+        { limit: 100, symbol: "C" },
+      ];
+
+      let count = 0;
+      const interval = setInterval(() => {
+        count += Math.floor(Math.random() * 4) + 2;
+        if (count > 100) count = 100;
+
+        counterElement.innerText = `${count}%`;
+        progressBar.style.width = `${count}%`;
+
+        // Update Roman Numeral display
+        const activeRoman = romanNumerals.find(r => count <= r.limit);
+        if (activeRoman) {
+          romanElement.innerText = activeRoman.symbol;
+        }
+
+        if (count >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            // Fade out center loader text
+            loaderContent.style.opacity = "0";
+
+            setTimeout(() => {
+              // Open Split Curtains
+              curtainLeft.style.transform = "translateX(-100%)";
+              curtainRight.style.transform = "translateX(100%)";
+              preloaderScreen.style.pointerEvents = "none";
+
+              setTimeout(() => {
+                preloaderScreen.style.display = "none";
+                // Trigger staggered entrances across the page
+                triggerEntranceAnimations();
+              }, 900);
+            }, 300);
+          }, 400);
+        }
+      }, 35);
+    });
+
+    // Stagger Reveal Engine
+    function triggerEntranceAnimations() {
+      const revealElements = document.querySelectorAll(".stagger-init");
+      revealElements.forEach((el, index) => {
+        const delay = el.getAttribute("data-stagger-delay") || (index * 120);
+        setTimeout(() => {
+          el.classList.add("is-revealed");
+        }, parseInt(delay, 10));
+      });
+    }
+  </script>
+<script data-purpose="custom-cursor-and-scroll">
+    // Classical Golden Cursor Follower Logic
+    const cursor = document.getElementById("goldCursor");
+    const dot = document.getElementById("goldDot");
+
+    window.addEventListener("mousemove", (e) => {
+      if (cursor && dot) {
+        cursor.style.transform = `translate3d(${e.clientX - 16}px, ${e.clientY - 16}px, 0)`;
+        dot.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
+      }
+    });
+
+    // Intersection Observer for scroll triggers in subsequent sections
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".stagger-init").forEach(target => {
+      observer.observe(target);
+    });
+  </script>
+<!-- END: Interactive Preloader & Entrance Animation Scripts -->
+
+
+
+
+</body></html>
