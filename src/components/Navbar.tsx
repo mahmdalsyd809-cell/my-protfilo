@@ -59,10 +59,10 @@ export default function Navbar() {
         className={`fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center transition-transform duration-500 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:hidden`}
       >
         <div className="flex flex-col items-center space-y-8 w-full px-6">
-          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#hero" onClick={() => setIsOpen(false)}>Sanctuary</a>
-          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#odyssey" onClick={() => setIsOpen(false)}>The Odyssey</a>
-          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#masterpieces" onClick={() => setIsOpen(false)}>Masterpieces</a>
-          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#pillars" onClick={() => setIsOpen(false)}>Pillars</a>
+          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#hero" onClick={() => setIsOpen(false)}>Who iam</a>
+          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#odyssey" onClick={() => setIsOpen(false)}>The Journey</a>
+          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#masterpieces" onClick={() => setIsOpen(false)}>Skills</a>
+          <a className="font-serifHeading text-2xl uppercase tracking-widest text-obsidian-900 hover:text-gold-500 transition-colors" href="#pillars" onClick={() => setIsOpen(false)}>Projects</a>
        
           
        
