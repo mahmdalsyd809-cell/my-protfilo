@@ -39,11 +39,11 @@ export default function Hero() {
           <div className="relative w-72 sm:w-88 md:w-96 aspect-[3/4] flex items-center justify-center">
             <div className="absolute -inset-10 border border-gold-400/30 rounded-full animate-spin-slow pointer-events-none"></div>
             <div className="absolute -inset-6 border-2 border-dashed border-gold-500/25 rounded-full animate-spin-reverse pointer-events-none"></div>
-            <div className="relative w-full h-full rounded-2xl md:rounded-t-full border-4 border-gold-400 p-2 bg-gradient-to-b from-gold-300 via-gold-500 to-gold-700 shadow-monument overflow-hidden">
+            <div className="relative w-full h-full rounded-2xl md:rounded-t-full   p-2 bg-gradient-to-b  shadow-monument overflow-hidden">
               <div className="w-full h-full rounded-xl md:rounded-t-full overflow-hidden bg-marble-100 relative group">
                 <img alt="Classical Carrara Marble Bust of Aurelius Vance" className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBboVw3clPKjBQTcu06YJlLDsfjZqdCRljH529Y7qDh9z2Ty3YmvlQU1tvCMhSA12IgRCXEM_MorH8wEVF_PV9b7INcp9izdgbGHSof5-SVTiER7r0Y4C1OhtpvIWq0NzCvSaQ4SG5BOPeFg4cu-7Qt17fPjCaXlb1r-x6FIU1PU02mS7bN7hjJpDOaCdxjFxYCgcxt1q3kWTJSbctInq4W3jYSFpbaIQfx8dMX6dTgjefrmewVumiHfrSHd0FqmvYv0Gk" />
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent opacity-60"></div>
-                <div className="absolute bottom-4 inset-x-4 py-2 px-3 bg-white/85 backdrop-blur-md rounded-lg border border-gold-400/60 text-center">
+                <div className="absolute bottom-4 inset-x-4 py-2 px-3 bg-white/85 backdrop-blur-md rounded-lg   text-center">
                   <span className="font-serifHeading text-[10px] tracking-[0.3em] uppercase text-gold-700 font-bold">!The greatest Developer ever Me!</span>
                 </div>
               </div>
